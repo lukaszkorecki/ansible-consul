@@ -85,7 +85,7 @@
 
 - name: SYSV init script
   template: src=consul_sysvinit.j2 dest=/etc/init.d/consul owner=root group=root mode=755
-  when: not ansible_service_mgr == "systemd" and not ansible_os_family == "Debian"
+  when: not ansible_service_mgr == "systemd" and (not ansible_os_family == "Debian" or ansible_os_family == "Ubuntu")
 
 - name: Debian init script
   template: src=consul_debian.init.j2 dest=/etc/init.d/consul owner=root group=root mode=755
@@ -121,4 +121,4 @@
   when: consul_iptables_enable
 
 - include: ../tasks/client.yml
-  when: consul_node_role == "client" and ansible_os_family == "Debian"
+  when: consul_node_role == "client" and (ansible_os_family == "Debian" or ansible_os_family == "Ubuntu")
