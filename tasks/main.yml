@@ -40,7 +40,7 @@
 - name: Add Consul user
   user: "name=consul comment='Consul user' uid=1042 group=bin"
 
-- name: Install specified packages  
+- name: Install specified packages
   include: "{{ ansible_distribution }}.yml"
 
 - block:
@@ -60,7 +60,7 @@
     - /var/log/consul
     - /var/run/consul
     - /etc/consul.d
-    - /etc/consul.d/bootstrap   
+    - /etc/consul.d/bootstrap
     - /etc/consul.d/client
     - /etc/consul.d/server
 
