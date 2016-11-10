@@ -40,8 +40,8 @@ start() {
         mkrundir
         [ -f $PID_FILE ] && rm $PID_FILE
         daemon --user={{ consul_user }} \
-            --pidfile="$PID_FILE" \
-            "$CONSUL" agent -pid-file "${PID_FILE}" -config-dir "$CONFIG" &
+               --pidfile="$PID_FILE" \
+               -- "$CONSUL" agent -pid-file "${PID_FILE}" -config-dir "$CONFIG" &
         retcode=$?
         touch /var/lock/subsys/consul
         return $retcode
